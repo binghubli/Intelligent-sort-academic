@@ -1,4 +1,4 @@
-import React from 'react'; // Fix: Import React to resolve namespace error
+import React from 'react';
 
 export enum Subject {
   MATH = 'MATH',
@@ -10,19 +10,27 @@ export interface UserProgress {
   level: number;
   mathScore: number;
   englishScore: number;
-}
-
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-  isError?: boolean;
+  // New stats
+  wordsLearned: number;
+  mathSolved: number;
+  // Daily tracking
+  lastLoginDate: string;
+  dailyMathCount: number;
+  dailyWordCount: number;
 }
 
 export interface MathProblem {
   question: string;
-  type: 'multiplication' | 'division' | 'fraction' | 'geometry';
-  answer: number | string;
-  options?: string[]; // For multiple choice if needed
+  type: string;
+  answer: string | number;
+  explanation: string;
+}
+
+export interface EnglishQuiz {
+  chinese: string;
+  english: string;
+  missingWord: string; // The word to hide
+  options: string[]; // Options for the blank
 }
 
 export interface NavItem {
@@ -30,4 +38,17 @@ export interface NavItem {
   path: string;
   icon: React.ReactNode;
   color: string;
+}
+
+export interface WordCard {
+  en: string;
+  cn: string;
+  emoji: string;
+  ipa: string; // Added International Phonetic Alphabet
+}
+
+export interface ChatMessage {
+  role: 'user' | 'model';
+  text: string;
+  isError?: boolean;
 }
